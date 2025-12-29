@@ -1,3 +1,13 @@
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Eye,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  ChevronDown
+} from "lucide-react";
+import { useEffect, useState } from "react";
+
 export default function VideoCard({
   publicId,
   cloudName,
@@ -6,13 +16,23 @@ export default function VideoCard({
   loop,
   onLeft,
   onRight,
+  onUp,
+  onDown,
   canGoLeft,
-  canGoRight
+  canGoRight,
+  canGoUp,
+  canGoDown
 }) {
   const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto/${publicId}`;
+  const [showHint, setShowHint] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(false), 3500);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
-    <div className="relative w-full h-[85vh] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900">
+    <div className="relative w-11/12 h-[85vh] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900">
 
       {/* VIDEO */}
       <video
@@ -26,61 +46,173 @@ export default function VideoCard({
       />
 
       {/* GRADIENTES */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24
-                      bg-gradient-to-r from-black/40 to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24
-                      bg-gradient-to-l from-black/40 to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-black/50 to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-black/50 to-transparent z-10" />
 
-      {/* FLECHA IZQUIERDA */}
-      {canGoLeft && (
-        <button
-          onClick={onLeft}
-          aria-label="Mirar hacia la izquierda"
-          className="group absolute left-6 top-1/2 -translate-y-1/2 z-40
-                     w-14 h-14 rounded-full bg-white/10 backdrop-blur-md
-                     border border-white/20 flex items-center justify-center
-                     text-white text-3xl hover:bg-white/20 hover:scale-110
-                     transition-all duration-300"
-        >
-          ‹
-          <span
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2
-                       bottom-full mb-3
-                       opacity-0 group-hover:opacity-100
-                       text-xs tracking-wide text-white
-                       bg-black/60 backdrop-blur-md
-                       px-3 py-1 rounded-full
-                       transition-opacity duration-300"
+      {/* HINT */}
+      <AnimatePresence>
+        {showHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="
+              pointer-events-none
+              absolute
+              bottom-8
+              left-1/2
+              -translate-x-1/2
+              z-30
+              flex
+              items-center
+              gap-3
+              px-6
+              py-3
+              rounded-full
+              bg-black/50
+              backdrop-blur-md
+              border border-white/30
+              text-white
+              text-xs
+              tracking-widest
+              uppercase
+            "
           >
-            Cambiar perspectiva
-          </span>
-        </button>
+            <ChevronLeft size={16} />
+            <ChevronUp size={16} />
+            <ChevronDown size={16} />
+            <ChevronRight size={16} />
+            <span className="opacity-80">explorá</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* IZQUIERDA */}
+      {canGoLeft && (
+        <motion.button
+          onClick={onLeft}
+          animate={{ x: [-4, 4, -4] }}
+          transition={{ duration: 2.4, repeat: Infinity }}
+          className="
+            group
+            absolute
+            left-6
+            top-1/2
+            -translate-y-1/2
+            z-40
+            w-16
+            h-16
+            flex
+            flex-col
+            items-center
+            justify-center
+            rounded-full
+            bg-black/50
+            backdrop-blur-md
+            border border-white/30
+            hover:bg-black/70
+            hover:scale-110
+            transition-all
+          "
+        >
+          <ChevronLeft size={28} className="opacity-60 group-hover:opacity-100 transition" />
+          <Eye size={16} className="mt-0.5 opacity-60 group-hover:opacity-100 transition" />
+        </motion.button>
       )}
 
-      {/* FLECHA DERECHA */}
+      {/* DERECHA */}
       {canGoRight && (
-        <button
+        <motion.button
           onClick={onRight}
-          aria-label="Mirar hacia la derecha"
-          className="group absolute right-6 top-1/2 -translate-y-1/2 z-40
-                     w-14 h-14 rounded-full bg-white/10 backdrop-blur-md
-                     border border-white/20 flex items-center justify-center
-                     text-white text-3xl hover:bg-white/20 hover:scale-110
-                     transition-all duration-300"
+          animate={{ x: [4, -4, 4] }}
+          transition={{ duration: 2.4, repeat: Infinity }}
+          className="
+            group
+            absolute
+            right-6
+            top-1/2
+            -translate-y-1/2
+            z-40
+            w-16
+            h-16
+            flex
+            flex-col
+            items-center
+            justify-center
+            rounded-full
+            bg-black/50
+            backdrop-blur-md
+            border border-white/30
+            hover:bg-black/70
+            hover:scale-110
+            transition-all
+          "
         >
-          ›
-          <span
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2
-                       bottom-full mb-3
-                       opacity-0 group-hover:opacity-100
-                       text-xs tracking-wide text-white
-                       bg-black/60 backdrop-blur-md
-                       px-3 py-1 rounded-full
-                       transition-opacity duration-300"
-          >
-            Cambiar perspectiva
-          </span>
-        </button>
+          <ChevronRight size={28} className="opacity-60 group-hover:opacity-100 transition" />
+          <Eye size={16} className="mt-0.5 opacity-60 group-hover:opacity-100 transition" />
+        </motion.button>
+      )}
+
+      {/* ARRIBA (sin ojo) */}
+      {canGoUp && (
+        <motion.button
+          onClick={onUp}
+          animate={{ y: [-4, 4, -4] }}
+          transition={{ duration: 2.6, repeat: Infinity }}
+          className="
+            group
+            absolute
+            top-6
+            left-1/2
+            -translate-x-1/2
+            z-40
+            w-16
+            h-16
+            flex
+            items-center
+            justify-center
+            rounded-full
+            bg-black/50
+            backdrop-blur-md
+            border border-white/30
+            hover:bg-black/70
+            hover:scale-110
+            transition-all
+          "
+        >
+          <ChevronUp size={28} className="opacity-60 group-hover:opacity-100 transition" />
+        </motion.button>
+      )}
+
+      {/* ABAJO (sin ojo) */}
+      {canGoDown && (
+        <motion.button
+          onClick={onDown}
+          animate={{ y: [4, -4, 4] }}
+          transition={{ duration: 2.6, repeat: Infinity }}
+          className="
+            group
+            absolute
+            bottom-6
+            left-1/2
+            -translate-x-1/2
+            z-40
+            w-16
+            h-16
+            flex
+            items-center
+            justify-center
+            rounded-full
+            bg-black/50
+            backdrop-blur-md
+            border border-white/30
+            hover:bg-black/70
+            hover:scale-110
+            transition-all
+          "
+        >
+          <ChevronDown size={28} className="opacity-60 group-hover:opacity-100 transition" />
+        </motion.button>
       )}
     </div>
   );
