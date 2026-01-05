@@ -9,101 +9,82 @@ const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 const nodes = [
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "plazaMuñiz",
+    name: "Plaza Muñiz",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "nodoMuñiz_qh9x3n" },
+      left: { publicId: "" },
+      right: { publicId: "muñizDerecha_xnpvjb" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "tillous",
+    name: "Casa Tillous",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "nodoTilous_xboare" },
+      left: { publicId: "" },
+      right: { publicId: "tillousIzquierda_lbwviu" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "sargento",
+    name: "Sargento Cabral",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "sargentoCabralNodo_gzatvp" },
+      left: { publicId: "sargentoCabralIzquierda_zema7n" },
+      right: { publicId: "sargentoCabralDerecha_t04exr" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "italia",
+    name: "Italia",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "0102_1_kbek2w" },
+      left: { publicId: "italiaIzquierda_dtm0ua" },
+      right: { publicId: "italiaDerechaa_kalxwf" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "charlone",
+    name: "Charlone",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "nodoCharlonne_poa2op" },
+      left: { publicId: "rrrrrrrrrrrrr_ofkuv8" },
+      right: { publicId: "charloneDerechaaaa_wviczs" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "belgrano",
+    name: "Belgrano",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
+      center: { publicId: "belgrano_nodo_xewko8" },
       left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      right: { publicId: "belgranoDerechaa_ucgekq" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "PlazaSM",
+    name: "Plaza San Miguel",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "nodoPlazaa_hkgv3v" },
+      left: { publicId: "plazaizquierdaa_kfxugf" },
+      right: { publicId: "plaza_derecha_vf9b8y" }
     }
-},
+  },
   {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
+    key: "mitre",
+    name: "Mitre",
     views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
+      center: { publicId: "nodoMitreee_cvxmy4" },
+      left: { publicId: "izquierdaMitre_zvv6dw" },
+      right: { publicId: "derechaMitre_uitqye" }
     }
-},
-  {
-    key: "belgrano-peron",
-    name: "Belgrano y Perón",
-    views: {
-      center: { publicId: "BelgranoYPeron_ctxscn" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "BelgranoDerecha_y8faoa" }
-    }
-},
-  {
-    key: "gallardo-mitre",
-    name: "L.Gallardo y Mitre",
-    views: {
-      center: { publicId: "nodo_zmsqb1" },
-      left: { publicId: "mitreIzquierda_n3cxe9" },
-      right: { publicId: "derechaMitre_lzrgq9" }
-    }
-},
-
+  }
 ];
 
 export default function App() {
   const [started, setStarted] = useState(false);
-  const [activeNode, setActiveNode] = useState(nodes[0].key);
+  const [activeNode, setActiveNode] = useState(nodes[nodes.length - 1].key);
   const [view, setView] = useState("center");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -111,7 +92,9 @@ export default function App() {
   const node = nodes[activeIndex];
   const current = node.views[view];
 
-  /* ---------- vistas laterales ---------- */
+  const hasLeft = !!node.views.left?.publicId;
+  const hasRight = !!node.views.right?.publicId;
+
   const transitionTo = (nextView) => {
     if (nextView === view) return;
     setIsTransitioning(true);
@@ -123,15 +106,14 @@ export default function App() {
 
   const goLeft = () => {
     if (view === "right") transitionTo("center");
-    else if (view === "center") transitionTo("left");
+    else if (view === "center" && hasLeft) transitionTo("left");
   };
 
   const goRight = () => {
     if (view === "left") transitionTo("center");
-    else if (view === "center") transitionTo("right");
+    else if (view === "center" && hasRight) transitionTo("right");
   };
 
-  /* ---------- navegación vertical ---------- */
   const canGoUp = activeIndex > 0;
   const canGoDown = activeIndex < nodes.length - 1;
 
@@ -155,40 +137,36 @@ export default function App() {
     }, 200);
   };
 
+  // ✅ MENSAJES SOLO EN CENTER
+  const leftLabel =
+    view === "center" && node.key === "charlone"
+      ? "Mirar hacia atrás"
+      : undefined;
+
+  const rightLabel =
+    view === "center" && node.key === "sargento"
+      ? "Mirar hacia atrás"
+      : undefined;
+
   return (
     <AnimatePresence mode="wait">
       {!started ? (
-        <LandingPage key="landing" onStart={() => setStarted(true)} />
+        <LandingPage onStart={() => setStarted(true)} />
       ) : (
         <motion.main
-          key="gallery"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2 }}
           className="relative h-screen overflow-hidden text-gray-100"
         >
-          {/* BACKGROUND */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: "url('/parallax1.jpg')" }}
           />
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* LAYOUT PRINCIPAL */}
-          <section
-            className="
-              relative
-              h-full
-              w-full
-              grid
-              grid-cols-[320px_1fr]
-              gap-4
-              px-4
-              pt-6
-            "
-          >
-            {/* SIDEBAR */}
+          <section className="relative h-full w-full grid grid-cols-[320px_1fr] gap-4 px-4 pt-6">
             <SidebarNodes
               nodes={nodes}
               activeNode={activeNode}
@@ -202,7 +180,6 @@ export default function App() {
               }}
             />
 
-            {/* CONTENIDO */}
             <div className="flex flex-col items-center w-full">
               {/* TÍTULO */}
               <div className="relative mb-4 flex justify-center">
@@ -212,7 +189,6 @@ export default function App() {
                 </h1>
               </div>
 
-              {/* VIDEO */}
               <motion.div
                 className="w-full flex justify-center"
                 animate={{
@@ -231,10 +207,13 @@ export default function App() {
                   onRight={goRight}
                   onUp={goUp}
                   onDown={goDown}
-                  canGoLeft={view !== "left"}
-                  canGoRight={view !== "right"}
-                  canGoUp={canGoUp}
+                  canGoLeft={view !== "left" && (view === "right" || hasLeft)}
+                  canGoRight={view !== "right" && (view === "left" || hasRight)}
+                  canGoUp={canGoUp && view === "center"}
                   canGoDown={canGoDown}
+                  isCenter={view === "center"}
+                  leftLabel={leftLabel}
+                  rightLabel={rightLabel}
                 />
               </motion.div>
             </div>

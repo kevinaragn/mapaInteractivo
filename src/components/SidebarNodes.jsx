@@ -26,7 +26,7 @@ export default function SidebarNodes({ nodes, activeNode, onSelect }) {
         <div className="flex items-center gap-3 pt-20 pb-15">
           <MapPinned size={20} className="text-white/80" />
           <h2 className="text-white/90 text-xl tracking-wide">
-                Navegá por los puntos
+                Avenida León Gallardo
           </h2>
         </div>
 
@@ -46,7 +46,7 @@ export default function SidebarNodes({ nodes, activeNode, onSelect }) {
           />
 
           {/* ESTACIONES */}
-          <div className="flex flex-col gap-10 pl-6 justify-center">
+          <div className="flex flex-col gap-14 pl-6 justify-center">
             {nodes.map((node) => {
               const isActive = node.key === activeNode;
 
