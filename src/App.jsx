@@ -7,6 +7,7 @@ import SidebarNodes from "./components/SidebarNodes";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
+/* --- NODES (sin cambios) --- */
 const nodes = [
   {
     key: "plazaMuñiz",
@@ -137,7 +138,6 @@ export default function App() {
     }, 200);
   };
 
-  // ✅ MENSAJES SOLO EN CENTER
   const leftLabel =
     view === "center" && node.key === "charlone"
       ? "Mirar hacia atrás"
@@ -166,25 +166,30 @@ export default function App() {
           />
           <div className="absolute inset-0 bg-black/40" />
 
-          <section className="relative h-full w-full grid grid-cols-[320px_1fr] gap-4 px-4 pt-6">
-            <SidebarNodes
-              nodes={nodes}
-              activeNode={activeNode}
-              onSelect={(key) => {
-                setIsTransitioning(true);
-                setTimeout(() => {
-                  setActiveNode(key);
-                  setView("center");
-                  setTimeout(() => setIsTransitioning(false), 300);
-                }, 200);
-              }}
-            />
+          {/* GRID RESPONSIVE */}
+          <section className="relative h-full w-full grid grid-cols-1 md:grid-cols-[320px_1fr] gap-4 px-3 md:px-4 pt-4 md:pt-6">
 
+            {/* SIDEBAR — OCULTO EN MOBILE */}
+            <div className="hidden md:block">
+              <SidebarNodes
+                nodes={nodes}
+                activeNode={activeNode}
+                onSelect={(key) => {
+                  setIsTransitioning(true);
+                  setTimeout(() => {
+                    setActiveNode(key);
+                    setView("center");
+                    setTimeout(() => setIsTransitioning(false), 300);
+                  }, 200);
+                }}
+              />
+            </div>
+
+            {/* CONTENIDO */}
             <div className="flex flex-col items-center w-full">
-              {/* TÍTULO */}
-              <div className="relative mb-4 flex justify-center">
-                <div className="absolute inset-0 rounded-2xl bg-black/10 backdrop-blur-3xl border border-white/10 shadow-2xl" />
-                <h1 className="relative px-8 py-3 text-3xl md:text-4xl font-serif text-white text-center">
+              <div className="relative mb-3 md:mb-4 flex justify-center">
+                <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-3xl border border-white/10 shadow-2xl" />
+                <h1 className="relative px-6 md:px-8 py-2 md:py-3 text-xl md:text-4xl font-serif text-white text-center">
                   {node.name}
                 </h1>
               </div>

@@ -26,23 +26,23 @@ export default function VideoCard({
   leftLabel,
   rightLabel
 }) {
-  const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto/${publicId}`;
+const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto,so_0,eo_12/${publicId}.mp4`;
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setShowHint(false), 3500);
+    const t = setTimeout(() => setShowHint(false), 3000);
     return () => clearTimeout(t);
   }, []);
 
   return (
-    <div className="relative w-11/12 h-[85vh] rounded-3xl overflow-hidden shadow-2xl bg-neutral-900">
+    <div className="relative w-full md:w-11/12 h-[70vh] md:h-[85vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-neutral-900">
       <video
         src={videoUrl}
         autoPlay={autoPlay}
         muted={muted}
         loop={loop}
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-contain bg-black"
       />
 
@@ -52,67 +52,71 @@ export default function VideoCard({
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 px-6 py-3 rounded-full bg-black/50 backdrop-blur-md border border-white/30 text-xs tracking-widest uppercase"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 px-5 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] md:text-xs tracking-widest uppercase"
           >
-            explorá con las flechas
+            deslizá con flechas
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* IZQUIERDA */}
       {canGoLeft && (
         <motion.button
           onClick={onLeft}
-          animate={{ x: [-4, 4, -4] }}
+          animate={{ x: [-3, 3, -3] }}
           transition={{ duration: 2.4, repeat: Infinity }}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-40 w-16 h-16 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
+          className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-16 md:h-16 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
         >
-          <ChevronLeft size={28} />
-          <Eye size={16} className="mt-0.5" />
+          <ChevronLeft size={22} />
+          <Eye size={14} />
           {leftLabel && (
-            <span className="absolute -bottom-28 text-[15px] text-white/70 tracking-wide">
+            <span className="absolute -bottom-16 text-xs text-white/70">
               {leftLabel}
             </span>
           )}
         </motion.button>
       )}
 
+      {/* DERECHA */}
       {canGoRight && (
         <motion.button
           onClick={onRight}
-          animate={{ x: [4, -4, 4] }}
+          animate={{ x: [3, -3, 3] }}
           transition={{ duration: 2.4, repeat: Infinity }}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-40 w-16 h-16 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
+          className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-16 md:h-16 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
         >
-          <ChevronRight size={28} />
-          <Eye size={16} className="mt-0.5" />
+          <ChevronRight size={22} />
+          <Eye size={14} />
           {rightLabel && (
-            <span className="absolute -bottom-20 text-[15px] text-white/70 tracking-wide">
+            <span className="absolute -bottom-16 text-xs text-white/70">
               {rightLabel}
             </span>
           )}
         </motion.button>
       )}
 
+      {/* ARRIBA */}
       {canGoUp && isCenter && (
         <motion.button
           onClick={onUp}
-          animate={{ y: [-4, 4, -4] }}
+          animate={{ y: [-3, 3, -3] }}
           transition={{ duration: 2.6, repeat: Infinity }}
-          className="absolute top-6 left-1/2 -translate-x-1/2 z-40 w-20 h-20 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
+          className="absolute top-3 md:top-6 left-1/2 -translate-x-1/2 z-40 w-14 h-14 md:w-20 md:h-20 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
         >
-          <ChevronUp size={28} />
-          <span className="mt-1 text-xs tracking-widest">AVANZAR</span>
+          <ChevronUp size={22} />
+          <span className="text-[10px] md:text-xs tracking-widest">AVANZAR</span>
         </motion.button>
       )}
 
+      {/* ABAJO */}
       {canGoDown && (
         <motion.button
           onClick={onDown}
-          animate={{ y: [4, -4, 4] }}
+          animate={{ y: [3, -3, 3] }}
           transition={{ duration: 2.6, repeat: Infinity }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 w-16 h-16 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
+          className="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 z-40 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
         >
-          <ChevronDown size={28} />
+          <ChevronDown size={22} />
         </motion.button>
       )}
     </div>
