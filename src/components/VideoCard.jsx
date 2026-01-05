@@ -26,7 +26,7 @@ export default function VideoCard({
   leftLabel,
   rightLabel
 }) {
-const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto,q_auto,so_0,eo_12/${publicId}.mp4`;
+const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/so_0/eo_12/${publicId}.mp4`;
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
