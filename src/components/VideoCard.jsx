@@ -26,26 +26,34 @@ export default function VideoCard({
   leftLabel,
   rightLabel
 }) {
-const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/so_0/eo_12/${publicId}.mp4`;
+  // 🔒 Protección: evita URLs inválidas
+  if (!publicId || !cloudName) return null;
+
+  // ✅ URL correcta para producción (Vercel friendly)
+  const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_mp4,q_auto,so_0,eo_12/${publicId}`;
+
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 3000);
     return () => clearTimeout(t);
-  }, []);
+  }, [publicId]);
 
   return (
     <div className="relative w-full md:w-11/12 h-[70vh] md:h-[85vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-neutral-900">
       <video
+        key={videoUrl}                // 🔑 fuerza recarga al cambiar nodo
         src={videoUrl}
         autoPlay={autoPlay}
         muted={muted}
         loop={loop}
         playsInline
         preload="metadata"
+        crossOrigin="anonymous"        // 🔑 clave para producción
         className="absolute inset-0 w-full h-full object-contain bg-black"
       />
 
+      {/* HINT */}
       <AnimatePresence>
         {showHint && (
           <motion.div
@@ -104,7 +112,9 @@ const videoUrl = `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_
           className="absolute top-3 md:top-6 left-1/2 -translate-x-1/2 z-40 w-14 h-14 md:w-20 md:h-20 flex flex-col items-center justify-center rounded-full bg-black/50 backdrop-blur-md border border-white/30"
         >
           <ChevronUp size={22} />
-          <span className="text-[10px] md:text-xs tracking-widest">AVANZAR</span>
+          <span className="text-[10px] md:text-xs tracking-widest">
+            AVANZAR
+          </span>
         </motion.button>
       )}
 
