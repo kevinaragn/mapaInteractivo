@@ -7,75 +7,51 @@ import SidebarNodes from "./components/SidebarNodes";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
-/* --- NODES (sin cambios) --- */
+/* --- NODES (orden original restaurado) --- */
 const nodes = [
-  {
-    key: "plazaMuñiz",
-    name: "Plaza Muñiz",
-    views: {
+  { key: "plazaMuñiz", name: "Plaza Muñiz", views: {
       center: { publicId: "nodoMuñiz_qh9x3n" },
       left: { publicId: "" },
       right: { publicId: "muñizDerecha_xnpvjb" }
     }
   },
-  {
-    key: "tillous",
-    name: "Casa Tillous",
-    views: {
+  { key: "tillous", name: "Casa Tillous", views: {
       center: { publicId: "nodoTilous_xboare" },
       left: { publicId: "" },
       right: { publicId: "tillousIzquierda_lbwviu" }
     }
   },
-  {
-    key: "sargento",
-    name: "Sargento Cabral",
-    views: {
+  { key: "sargento", name: "Sargento Cabral", views: {
       center: { publicId: "sargentoCabralNodo_gzatvp" },
       left: { publicId: "sargentoCabralIzquierda_zema7n" },
       right: { publicId: "sargentoCabralDerecha_t04exr" }
     }
   },
-  {
-    key: "italia",
-    name: "Italia",
-    views: {
+  { key: "italia", name: "Italia", views: {
       center: { publicId: "0102_1_kbek2w" },
       left: { publicId: "italiaIzquierda_dtm0ua" },
       right: { publicId: "italiaDerechaa_kalxwf" }
     }
   },
-  {
-    key: "charlone",
-    name: "Charlone",
-    views: {
+  { key: "charlone", name: "Charlone", views: {
       center: { publicId: "nodoCharlonne_poa2op" },
       left: { publicId: "rrrrrrrrrrrrr_ofkuv8" },
       right: { publicId: "charloneDerechaaaa_wviczs" }
     }
   },
-  {
-    key: "belgrano",
-    name: "Belgrano",
-    views: {
+  { key: "belgrano", name: "Belgrano", views: {
       center: { publicId: "belgrano_nodo_xewko8" },
       left: { publicId: "BelgranoIzquierda_svnesb" },
       right: { publicId: "belgranoDerechaa_ucgekq" }
     }
   },
-  {
-    key: "PlazaSM",
-    name: "Plaza San Miguel",
-    views: {
+  { key: "PlazaSM", name: "Plaza San Miguel", views: {
       center: { publicId: "nodoPlazaa_hkgv3v" },
       left: { publicId: "plazaizquierdaa_kfxugf" },
       right: { publicId: "plaza_derecha_vf9b8y" }
     }
   },
-  {
-    key: "mitre",
-    name: "Mitre",
-    views: {
+  { key: "mitre", name: "Mitre", views: {
       center: { publicId: "nodoMitreee_cvxmy4" },
       left: { publicId: "izquierdaMitre_zvv6dw" },
       right: { publicId: "derechaMitre_uitqye" }
@@ -85,11 +61,11 @@ const nodes = [
 
 export default function App() {
   const [started, setStarted] = useState(false);
-  const [activeNode, setActiveNode] = useState(nodes[nodes.length - 1].key);
+  const [activeNode, setActiveNode] = useState(nodes[nodes.length - 1].key); // Mitre inicia
   const [view, setView] = useState("center");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const activeIndex = nodes.findIndex(n => n.key === activeNode);
+  const activeIndex = nodes.findIndex((n) => n.key === activeNode);
   const node = nodes[activeIndex];
   const current = node.views[view];
 
@@ -166,10 +142,10 @@ export default function App() {
           />
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* GRID RESPONSIVE */}
+          {/* DESKTOP GRID */}
           <section className="relative h-full w-full grid grid-cols-1 md:grid-cols-[320px_1fr] gap-4 px-3 md:px-4 pt-4 md:pt-6">
-
-            {/* SIDEBAR — OCULTO EN MOBILE */}
+            
+            {/* SIDEBAR DESKTOP */}
             <div className="hidden md:block">
               <SidebarNodes
                 nodes={nodes}
@@ -187,15 +163,18 @@ export default function App() {
 
             {/* CONTENIDO */}
             <div className="flex flex-col items-center w-full">
-              <div className="relative mb-3 md:mb-4 flex justify-center">
+              
+              {/* TITULO NODO — SOLO DESKTOP */}
+              <div className="hidden md:flex relative mb-3 md:mb-4 justify-center">
                 <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-3xl border border-white/10 shadow-2xl" />
                 <h1 className="relative px-6 md:px-8 py-2 md:py-3 text-xl md:text-4xl font-serif text-white text-center">
                   {node.name}
                 </h1>
               </div>
 
+              {/* VIDEO */}
               <motion.div
-                className="w-full flex justify-center"
+                className="w-full flex justify-center relative"
                 animate={{
                   opacity: isTransitioning ? 0.85 : 1,
                   scale: isTransitioning ? 0.99 : 1
@@ -221,6 +200,49 @@ export default function App() {
                   rightLabel={rightLabel}
                 />
               </motion.div>
+
+              {/* MOBILE — INDICADOR DE NODOS CON ESPACIO FIJO */}
+              <div className="block md:hidden mt-4 flex flex-col items-center gap-2 text-center text-white">
+                
+                {/* Flecha arriba centrada */}
+                <button
+                  onClick={goUp}
+                  disabled={!canGoUp}
+                  className="text-white/80 text-4xl leading-none select-none mx-auto"
+                >
+                  <span style={{ fontFamily: "sans-serif" }}>⌃</span>
+                </button>
+
+                {/* Nodo anterior / placeholder */}
+                <div className="text-white/50 text-sm tracking-wide">
+                  {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
+                </div>
+
+                {/* Nodo actual */}
+                <motion.div
+                  key={node.key}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                  className="text-white font-semibold text-lg tracking-wide"
+                >
+                  {node.name}
+                </motion.div>
+
+                {/* Nodo siguiente / placeholder */}
+                <div className="text-white/50 text-sm tracking-wide">
+                  {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
+                </div>
+
+                {/* Flecha abajo centrada */}
+                <button
+                  onClick={goDown}
+                  disabled={!canGoDown}
+                  className="text-white/80 text-4xl leading-none select-none mx-auto"
+                >
+                  <span style={{ fontFamily: "sans-serif" }}>⌄</span>
+                </button>
+              </div>
             </div>
           </section>
         </motion.main>
