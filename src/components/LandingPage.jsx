@@ -2,8 +2,15 @@ import { motion } from "framer-motion";
 
 export default function LandingPage({ onStart }) {
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      
+    <div
+      className="
+        relative w-full overflow-hidden
+        h-screen              /* desktop intacto */
+        max-md:overflow-hidden
+        max-md:min-h-[100dvh]
+        max-md:max-h-[100dvh]
+      "
+    >
       {/* 🔹 Fondo fijo */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -28,27 +35,22 @@ export default function LandingPage({ onStart }) {
         transition={{ duration: 1.2, ease: "easeInOut" }}
       />
 
-      {/* 🔹 LOGO + INSTITUTO (arriba izquierda) */}
+      {/* 🔹 LOGO + INSTITUTO */}
       <motion.div
         className="absolute top-6 left-6 z-20 flex items-center gap-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Logo */}
-              <img
+        <img
           src="/logo.ico"
           alt="Logo instituto"
           className="
             w-16 h-16 md:w-20 md:h-20
-            rounded-full
-            object-cover
-            border border-white/30
-            shadow-lg
-                      "
-/>
+            rounded-full object-cover border border-white/30 shadow-lg
+          "
+        />
 
-        {/* Nombre del instituto */}
         <h2 className="text-white text-lg md:text-xl font-semibold tracking-wide">
           Archivo y Museo Historico del Partido de San Miguel
         </h2>
@@ -77,31 +79,32 @@ export default function LandingPage({ onStart }) {
           onClick={onStart}
           whileHover={{ scale: 1.07 }}
           whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-white text-gray-900 rounded-lg
-                     text-lg font-semibold hover:bg-gray-200
-                     transition shadow-lg"
+          className="
+            px-8 py-3 bg-white text-gray-900 rounded-lg
+            text-lg font-semibold hover:bg-gray-200
+            transition shadow-lg
+          "
         >
           Comenzar
         </motion.button>
       </motion.div>
 
-      {/* 🔹 LINKEDIN (abajo izquierda, más grande) */}
+      {/* 🔹 LINKEDIN */}
       <motion.div
-  className="absolute bottom-6 left-6 z-20"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1.5 }}
->
-  <a
-    href="https://linkedin.com/in/kevinaragn"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-white text-lg md:text-xl tracking-wide hover:underline"
-  >
-    linkedin.com/kevinaragn
-  </a>
-</motion.div>
-
+        className="absolute bottom-6 left-6 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+        <a
+          href="https://linkedin.com/in/kevinaragn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white text-lg md:text-xl tracking-wide hover:underline"
+        >
+          linkedin.com/kevinaragn
+        </a>
+      </motion.div>
     </div>
   );
 }

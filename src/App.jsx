@@ -110,6 +110,7 @@ export default function App() {
 
             <div className="flex flex-col items-center w-full">
 
+              {/* desktop titulo */}
               <div className="hidden md:flex relative mb-4 justify-center">
                 <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-3xl border border-white/10 shadow-2xl" />
                 <h1 className="relative px-8 py-3 text-4xl font-serif text-white text-center">
@@ -142,47 +143,48 @@ export default function App() {
                 />
               </motion.div>
 
-              {/* MOBILE RETRO CARTEL */}
-              <div className="block md:hidden mt-4 flex flex-row gap-3 w-full px-3 font-serif">
-                <div className="flex flex-col justify-center basis-1/2 text-left">
+              {/* === MOBILE CARTEL + SELECTOR (SMALLER) === */}
+              <div className="block md:hidden mt-1 flex flex-row gap-2 w-full px-2 font-serif">
+
+                {/* cartel */}
+                <div className="flex flex-col justify-center basis-[55%] text-left">
                   <div
-  className="
-    px-5 py-3
-    rounded-md
-    uppercase
-    text-[12px]
-    font-serif
-    tracking-wide
-    text-white
-    border border-white/70
-    bg-black/80
-    shadow-[0_2px_1px_rgba(0,0,0,0.35)]
-    backdrop-blur-[0.4px]   /* blur minimísimo */
-    relative
-    text-center
-  "
-  style={{
-    // grano sutil puro css
-    maskImage: "radial-gradient(circle at center, black 70%, transparent 100%)",
-    WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
-    filter: "contrast(1.05) brightness(0.95) saturate(0)", // un toque más “impreso”
-    backgroundBlendMode: "multiply",
-  }}
->
-  Navegá por la avenida
-</div>
+                    className="
+                      px-4 py-1.5
+                      mb-1
+                      rounded-md
+                      uppercase
+                      text-[10px]
+                      tracking-wide
+                      text-white
+                      border border-white/60
+                      bg-black/75
+                      shadow-[0_2px_1px_rgba(0,0,0,0.35)]
+                      backdrop-blur-[0.4px]
+                      text-center
+                    "
+                    style={{
+                      maskImage: "radial-gradient(circle at center, black 70%, transparent 100%)",
+                      WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
+                      filter: "contrast(1.05) brightness(0.95) saturate(0)",
+                    }}
+                  >
+                    Navegá por la avenida
+                  </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-2 basis-1/2">
+                {/* selector */}
+                <div className="flex flex-col items-center gap-0.5 basis-[45%] leading-[1.05]">
+
                   {activeIndex > 0 && (
-                    <button onClick={goUp} className="active:scale-90 transition">
-                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <button onClick={goUp} className="active:scale-95 transition" style={{ padding: 2 }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="18 15 12 9 6 15" />
                       </svg>
                     </button>
                   )}
 
-                  <div className="text-white/60 text-sm">
+                  <div className="text-white/60 text-[10px] truncate max-w-[90px] text-center">
                     {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
                   </div>
 
@@ -191,19 +193,19 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="text-white font-bold text-lg"
+                    className="text-white font-bold text-[13px] truncate max-w-[100px]"
                     style={{ fontFamily: "Times New Roman" }}
                   >
                     {node.name}
                   </motion.div>
 
-                  <div className="text-white/60 text-sm">
+                  <div className="text-white/60 text-[10px] truncate max-w-[90px] text-center">
                     {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
                   </div>
 
                   {activeIndex < nodes.length - 1 && (
-                    <button onClick={goDown} className="active:scale-90 transition">
-                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <button onClick={goDown} className="active:scale-95 transition" style={{ padding: 2 }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="6 9 12 15 18 9" />
                       </svg>
                     </button>
