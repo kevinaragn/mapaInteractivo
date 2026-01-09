@@ -55,7 +55,7 @@ export default function VideoCard({
       ref={containerRef}
       className="
         relative w-full
-        h-[75vh] md:h-[80vh]
+        h-[80vh] md:h-[80vh]
         rounded-xl md:rounded-3xl
         overflow-hidden shadow-2xl bg-neutral-900
         flex justify-center items-center
@@ -175,7 +175,7 @@ export default function VideoCard({
           className="
             absolute z-40
             top-4 md:top-6
-            left-[42%] md:left-[42%]      /* ← cambio clave */
+            left-[43%] md:left-[43%]      /* ← cambio clave */
             -translate-x-1/2
             w-14 h-14 md:w-20 md:h-20
             flex flex-col items-center justify-center
@@ -198,7 +198,7 @@ export default function VideoCard({
           className="
             absolute z-40
             bottom-4 md:bottom-6
-            left-[42%] md:left-[42%]     /* ← mismo cambio */
+            left-[43%] md:left-[42%]     /* ← mismo cambio */
             -translate-x-1/2
             w-14 h-14 md:w-16 md:h-16
             flex items-center justify-center
