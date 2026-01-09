@@ -7,61 +7,20 @@ import SidebarNodes from "./components/SidebarNodes";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
-/* --- NODES (orden original restaurado) --- */
 const nodes = [
-  { key: "plazaMuñiz", name: "Plaza Muñiz", views: {
-      center: { publicId: "nodoMuñiz_qh9x3n" },
-      left: { publicId: "" },
-      right: { publicId: "muñizDerecha_xnpvjb" }
-    }
-  },
-  { key: "tillous", name: "Casa Tillous", views: {
-      center: { publicId: "nodoTilous_xboare" },
-      left: { publicId: "" },
-      right: { publicId: "tillousIzquierda_lbwviu" }
-    }
-  },
-  { key: "sargento", name: "Sargento Cabral", views: {
-      center: { publicId: "sargentoCabralNodo_gzatvp" },
-      left: { publicId: "sargentoCabralIzquierda_zema7n" },
-      right: { publicId: "sargentoCabralDerecha_t04exr" }
-    }
-  },
-  { key: "italia", name: "Italia", views: {
-      center: { publicId: "0102_1_kbek2w" },
-      left: { publicId: "italiaIzquierda_dtm0ua" },
-      right: { publicId: "italiaDerechaa_kalxwf" }
-    }
-  },
-  { key: "charlone", name: "Charlone", views: {
-      center: { publicId: "nodoCharlonne_poa2op" },
-      left: { publicId: "rrrrrrrrrrrrr_ofkuv8" },
-      right: { publicId: "charloneDerechaaaa_wviczs" }
-    }
-  },
-  { key: "belgrano", name: "Belgrano", views: {
-      center: { publicId: "belgrano_nodo_xewko8" },
-      left: { publicId: "BelgranoIzquierda_svnesb" },
-      right: { publicId: "belgranoDerechaa_ucgekq" }
-    }
-  },
-  { key: "PlazaSM", name: "Plaza San Miguel", views: {
-      center: { publicId: "nodoPlazaa_hkgv3v" },
-      left: { publicId: "plazaizquierdaa_kfxugf" },
-      right: { publicId: "plaza_derecha_vf9b8y" }
-    }
-  },
-  { key: "mitre", name: "Mitre", views: {
-      center: { publicId: "nodoMitreee_cvxmy4" },
-      left: { publicId: "izquierdaMitre_zvv6dw" },
-      right: { publicId: "derechaMitre_uitqye" }
-    }
-  }
+  { key: "plazaMuñiz", name: "Plaza Muñiz", views: { center: { publicId: "nodoMuñiz_qh9x3n" }, left: { publicId: "" }, right: { publicId: "muñizDerecha_xnpvjb" } } },
+  { key: "tillous", name: "Casa Tillous", views: { center: { publicId: "nodoTilous_xboare" }, left: { publicId: "" }, right: { publicId: "tillousIzquierda_lbwviu" } } },
+  { key: "sargento", name: "Sargento Cabral", views: { center: { publicId: "sargentoCabralNodo_gzatvp" }, left: { publicId: "sargentoCabralIzquierda_zema7n" }, right: { publicId: "sargentoCabralDerecha_t04exr" } } },
+  { key: "italia", name: "Italia", views: { center: { publicId: "0102_1_kbek2w" }, left: { publicId: "italiaIzquierda_dtm0ua" }, right: { publicId: "italiaDerechaa_kalxwf" } } },
+  { key: "charlone", name: "Charlone", views: { center: { publicId: "nodoCharlonne_poa2op" }, left: { publicId: "rrrrrrrrrrrrr_ofkuv8" }, right: { publicId: "charloneDerechaaaa_wviczs" } } },
+  { key: "belgrano", name: "Belgrano", views: { center: { publicId: "belgrano_nodo_xewko8" }, left: { publicId: "BelgranoIzquierda_svnesb" }, right: { publicId: "belgranoDerechaa_ucgekq" } } },
+  { key: "PlazaSM", name: "Plaza San Miguel", views: { center: { publicId: "nodoPlazaa_hkgv3v" }, left: { publicId: "plazaizquierdaa_kfxugf" }, right: { publicId: "plaza_derecha_vf9b8y" } } },
+  { key: "mitre", name: "Mitre", views: { center: { publicId: "nodoMitreee_cvxmy4" }, left: { publicId: "izquierdaMitre_zvv6dw" }, right: { publicId: "derechaMitre_uitqye" } } }
 ];
 
 export default function App() {
   const [started, setStarted] = useState(false);
-  const [activeNode, setActiveNode] = useState(nodes[nodes.length - 1].key); // Mitre inicia
+  const [activeNode, setActiveNode] = useState(nodes[nodes.length - 1].key);
   const [view, setView] = useState("center");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -114,15 +73,8 @@ export default function App() {
     }, 200);
   };
 
-  const leftLabel =
-    view === "center" && node.key === "charlone"
-      ? "Mirar hacia atrás"
-      : undefined;
-
-  const rightLabel =
-    view === "center" && node.key === "sargento"
-      ? "Mirar hacia atrás"
-      : undefined;
+  const leftLabel = view === "center" && node.key === "charlone" ? "Mirar hacia atrás" : undefined;
+  const rightLabel = view === "center" && node.key === "sargento" ? "Mirar hacia atrás" : undefined;
 
   return (
     <AnimatePresence mode="wait">
@@ -136,16 +88,11 @@ export default function App() {
           transition={{ duration: 1.2 }}
           className="relative h-screen overflow-hidden text-gray-100"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/parallax1.jpg')" }}
-          />
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/parallax1.jpg')" }} />
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* DESKTOP GRID */}
           <section className="relative h-full w-full grid grid-cols-1 md:grid-cols-[320px_1fr] gap-4 px-3 md:px-4 pt-4 md:pt-6">
-            
-            {/* SIDEBAR DESKTOP */}
+
             <div className="hidden md:block">
               <SidebarNodes
                 nodes={nodes}
@@ -161,24 +108,18 @@ export default function App() {
               />
             </div>
 
-            {/* CONTENIDO */}
             <div className="flex flex-col items-center w-full">
-              
-              {/* TITULO NODO — SOLO DESKTOP */}
-              <div className="hidden md:flex relative mb-3 md:mb-4 justify-center">
+
+              <div className="hidden md:flex relative mb-4 justify-center">
                 <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-3xl border border-white/10 shadow-2xl" />
-                <h1 className="relative px-6 md:px-8 py-2 md:py-3 text-xl md:text-4xl font-serif text-white text-center">
+                <h1 className="relative px-8 py-3 text-4xl font-serif text-white text-center">
                   {node.name}
                 </h1>
               </div>
 
-              {/* VIDEO */}
               <motion.div
                 className="w-full flex justify-center relative"
-                animate={{
-                  opacity: isTransitioning ? 0.85 : 1,
-                  scale: isTransitioning ? 0.99 : 1
-                }}
+                animate={{ opacity: isTransitioning ? 0.85 : 1, scale: isTransitioning ? 0.99 : 1 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <VideoCard
@@ -201,47 +142,73 @@ export default function App() {
                 />
               </motion.div>
 
-              {/* MOBILE — INDICADOR DE NODOS CON ESPACIO FIJO */}
-              <div className="block md:hidden mt-4 flex flex-col items-center gap-2 text-center text-white">
-                
-                {/* Flecha arriba centrada */}
-                <button
-                  onClick={goUp}
-                  disabled={!canGoUp}
-                  className="text-white/80 text-4xl leading-none select-none mx-auto"
-                >
-                  <span style={{ fontFamily: "sans-serif" }}>⌃</span>
-                </button>
-
-                {/* Nodo anterior / placeholder */}
-                <div className="text-white/50 text-sm tracking-wide">
-                  {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
+              {/* MOBILE RETRO CARTEL */}
+              <div className="block md:hidden mt-4 flex flex-row gap-3 w-full px-3 font-serif">
+                <div className="flex flex-col justify-center basis-1/2 text-left">
+                  <div
+  className="
+    px-5 py-3
+    rounded-md
+    uppercase
+    text-[12px]
+    font-serif
+    tracking-wide
+    text-white
+    border border-white/70
+    bg-black/80
+    shadow-[0_2px_1px_rgba(0,0,0,0.35)]
+    backdrop-blur-[0.4px]   /* blur minimísimo */
+    relative
+    text-center
+  "
+  style={{
+    // grano sutil puro css
+    maskImage: "radial-gradient(circle at center, black 70%, transparent 100%)",
+    WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
+    filter: "contrast(1.05) brightness(0.95) saturate(0)", // un toque más “impreso”
+    backgroundBlendMode: "multiply",
+  }}
+>
+  Navegá por la avenida
+</div>
                 </div>
 
-                {/* Nodo actual */}
-                <motion.div
-                  key={node.key}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.25 }}
-                  className="text-white font-semibold text-lg tracking-wide"
-                >
-                  {node.name}
-                </motion.div>
+                <div className="flex flex-col items-center gap-2 basis-1/2">
+                  {activeIndex > 0 && (
+                    <button onClick={goUp} className="active:scale-90 transition">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="18 15 12 9 6 15" />
+                      </svg>
+                    </button>
+                  )}
 
-                {/* Nodo siguiente / placeholder */}
-                <div className="text-white/50 text-sm tracking-wide">
-                  {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
+                  <div className="text-white/60 text-sm">
+                    {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
+                  </div>
+
+                  <motion.div
+                    key={node.key}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-white font-bold text-lg"
+                    style={{ fontFamily: "Times New Roman" }}
+                  >
+                    {node.name}
+                  </motion.div>
+
+                  <div className="text-white/60 text-sm">
+                    {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
+                  </div>
+
+                  {activeIndex < nodes.length - 1 && (
+                    <button onClick={goDown} className="active:scale-90 transition">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </button>
+                  )}
                 </div>
-
-                {/* Flecha abajo centrada */}
-                <button
-                  onClick={goDown}
-                  disabled={!canGoDown}
-                  className="text-white/80 text-4xl leading-none select-none mx-auto"
-                >
-                  <span style={{ fontFamily: "sans-serif" }}>⌄</span>
-                </button>
               </div>
             </div>
           </section>
@@ -250,4 +217,3 @@ export default function App() {
     </AnimatePresence>
   );
 }
-//aaaaaa
