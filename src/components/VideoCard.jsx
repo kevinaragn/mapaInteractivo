@@ -55,7 +55,7 @@ export default function VideoCard({
       ref={containerRef}
       className="
         relative w-full
-        h-[85vh] md:h-[80vh]
+        h-[75vh] md:h-[80vh]
         rounded-xl md:rounded-3xl
         overflow-hidden shadow-2xl bg-neutral-900
         flex justify-center items-center
