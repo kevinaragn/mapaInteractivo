@@ -9,13 +9,13 @@ const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 const nodes = [
   { key: "plazaMuñiz", name: "Plaza Muñiz", views: { center: { publicId: "nodoMuñiz_qh9x3n" }, left: { publicId: "" }, right: { publicId: "muñizDerecha_xnpvjb" } } },
-  { key: "tillous", name: "Casa Tillous", views: { center: { publicId: "nodoTilous_xboare" }, left: { publicId: "" }, right: { publicId: "tillousIzquierda_lbwviu" } } },
+  { key: "tillous", name: "Las Heras", views: { center: { publicId: "nodoTilous_xboare" }, left: { publicId: "" }, right: { publicId: "tillousIzquierda_lbwviu" } } },
   { key: "sargento", name: "Sargento Cabral", views: { center: { publicId: "sargentoCabralNodo_gzatvp" }, left: { publicId: "sargentoCabralIzquierda_zema7n" }, right: { publicId: "sargentoCabralDerecha_t04exr" } } },
   { key: "italia", name: "Italia", views: { center: { publicId: "0102_1_kbek2w" }, left: { publicId: "italiaIzquierda_dtm0ua" }, right: { publicId: "italiaDerechaa_kalxwf" } } },
-  { key: "charlone", name: "Charlone", views: { center: { publicId: "nodoCharlonne_poa2op" }, left: { publicId: "rrrrrrrrrrrrr_ofkuv8" }, right: { publicId: "charloneDerechaaaa_wviczs" } } },
-  { key: "belgrano", name: "Belgrano", views: { center: { publicId: "belgrano_nodo_xewko8" }, left: { publicId: "BelgranoIzquierda_svnesb" }, right: { publicId: "belgranoDerechaa_ucgekq" } } },
-  { key: "PlazaSM", name: "Plaza San Miguel", views: { center: { publicId: "nodoPlazaa_hkgv3v" }, left: { publicId: "plazaizquierdaa_kfxugf" }, right: { publicId: "plaza_derecha_vf9b8y" } } },
-  { key: "mitre", name: "Mitre", views: { center: { publicId: "nodoMitreee_cvxmy4" }, left: { publicId: "izquierdaMitre_zvv6dw" }, right: { publicId: "derechaMitre_uitqye" } } }
+  { key: "charlone", name: "Charlone", views: { center: { publicId: "CHARLONEE_t0e90w" }, left: { publicId: "rrrrrrrrrrrrr_ofkuv8" }, right: { publicId: "charloneDerechaaaa_wviczs" } } },
+  { key: "belgrano", name: "Belgrano", views: { center: { publicId: "44444_sqsed9" }, left: { publicId: "BelgranoIzquierda_svnesb" }, right: { publicId: "BELGRANODERECHA_gkbugq" } } },
+  { key: "PlazaSM", name: "Plaza San Miguel", views: { center: { publicId: "0110_dphpjq" }, left: { publicId: "plazaizquierdaa_kfxugf" }, right: { publicId: "plaza_derecha_vf9b8y" } } },
+  { key: "mitre", name: "Mitre", views: { center: { publicId: "0110222_h6anl7" }, left: { publicId: "part2_ogiovn" }, right: { publicId: "66666_pquehv" } } }
 ];
 
 export default function App() {

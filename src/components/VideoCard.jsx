@@ -55,7 +55,7 @@ export default function VideoCard({
       ref={containerRef}
       className="
         relative w-full
-        h-[80vh] md:h-[80vh]
+        h-[70vh] md:h-[80vh]
         rounded-xl md:rounded-3xl
         overflow-hidden shadow-2xl bg-neutral-900
         flex justify-center items-center
@@ -79,16 +79,11 @@ export default function VideoCard({
           loop={loop}
           playsInline
           preload="metadata"
-          className="
-            h-full w-[200vw]
-            max-w-none
-            object-cover
-            bg-black
-          "
+          className="h-full w-[200vw] max-w-none object-cover bg-black"
         />
       </motion.div>
 
-      {/* DESKTOP normal */}
+      {/* DESKTOP */}
       <video
         src={videoUrl}
         autoPlay={autoPlay}
@@ -128,8 +123,7 @@ export default function VideoCard({
           transition={{ duration: 2.4, repeat: Infinity }}
           className="
             absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-40
-            w-10 h-10 md:w-16 md:h-16
-            flex flex-col items-center justify-center
+            w-10 h-10 md:w-16 md:h-16 flex flex-col items-center justify-center
             rounded-full bg-black/50 backdrop-blur-md border border-white/30
           "
         >
@@ -151,8 +145,7 @@ export default function VideoCard({
           transition={{ duration: 2.4, repeat: Infinity }}
           className="
             absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-40
-            w-10 h-10 md:w-16 md:h-16
-            flex flex-col items-center justify-center
+            w-10 h-10 md:w-16 md:h-16 flex flex-col items-center justify-center
             rounded-full bg-black/50 backdrop-blur-md border border-white/30
           "
         >
@@ -166,7 +159,7 @@ export default function VideoCard({
         </motion.button>
       )}
 
-      {/* UP — centrado hacia la izquierda */}
+      {/* UP (centrado en la card) */}
       {canGoUp && isCenter && (
         <motion.button
           onClick={onUp}
@@ -175,8 +168,7 @@ export default function VideoCard({
           className="
             absolute z-40
             top-4 md:top-6
-            left-[43%] md:left-[43%]      /* ← cambio clave */
-            -translate-x-1/2
+            left-1/1 -translate-x-1/2
             w-14 h-14 md:w-20 md:h-20
             flex flex-col items-center justify-center
             rounded-full bg-black/50 backdrop-blur-md border border-white/30
@@ -189,7 +181,7 @@ export default function VideoCard({
         </motion.button>
       )}
 
-      {/* DOWN — alineado con UP */}
+      {/* DOWN (centrado en la card) */}
       {canGoDown && (
         <motion.button
           onClick={onDown}
@@ -198,8 +190,7 @@ export default function VideoCard({
           className="
             absolute z-40
             bottom-4 md:bottom-6
-            left-[43%] md:left-[42%]     /* ← mismo cambio */
-            -translate-x-1/2
+            left-1/1 -translate-x-1/2
             w-14 h-14 md:w-16 md:h-16
             flex items-center justify-center
             rounded-full bg-black/50 backdrop-blur-md border border-white/30
