@@ -86,12 +86,27 @@ export default function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2 }}
-          className="relative h-screen overflow-hidden text-gray-100"
+          className="relative overflow-hidden text-gray-100"
+          style={{ height: "100dvh", maxHeight: "100dvh" }}
         >
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/parallax1.jpg')" }} />
           <div className="absolute inset-0 bg-black/40" />
 
-          <section className="relative h-full w-full grid grid-cols-1 md:grid-cols-[320px_1fr] gap-4 px-3 md:px-4 pt-4 md:pt-6">
+          <section
+            className="
+              relative
+              w-full
+              h-full
+              max-h-full
+              grid
+              grid-cols-1
+              md:grid-cols-[320px_1fr]
+              gap-4
+              px-3 md:px-4
+              pt-2 md:pt-6
+              overflow-hidden
+            "
+          >
 
             <div className="hidden md:block">
               <SidebarNodes
@@ -108,9 +123,8 @@ export default function App() {
               />
             </div>
 
-            <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col items-center w-full max-h-full overflow-hidden">
 
-              {/* desktop titulo */}
               <div className="hidden md:flex relative mb-4 justify-center">
                 <div className="absolute inset-0 rounded-2xl bg-black/20 backdrop-blur-3xl border border-white/10 shadow-2xl" />
                 <h1 className="relative px-8 py-3 text-4xl font-serif text-white text-center">
@@ -143,69 +157,62 @@ export default function App() {
                 />
               </motion.div>
 
-              {/* === MOBILE CARTEL + SELECTOR (SMALLER) === */}
-              <div className="block md:hidden mt-1 flex flex-row gap-2 w-full px-2 font-serif">
+              {/* == MOBILE CARTEL + SELECTOR == */}
+              <div className="block md:hidden mt-1 flex flex-row gap-3 w-full px-2 font-serif">
 
-                {/* cartel */}
                 <div className="flex flex-col justify-center basis-[55%] text-left">
                   <div
                     className="
-                      px-4 py-1.5
+                      px-4 py-2
                       mb-1
                       rounded-md
                       uppercase
-                      text-[10px]
+                      text-[12px]
                       tracking-wide
                       text-white
                       border border-white/60
                       bg-black/75
                       shadow-[0_2px_1px_rgba(0,0,0,0.35)]
-                      backdrop-blur-[0.4px]
+                      backdrop-blur-[1px]
                       text-center
                     "
-                    style={{
-                      maskImage: "radial-gradient(circle at center, black 70%, transparent 100%)",
-                      WebkitMaskImage: "radial-gradient(circle at center, black 60%, transparent 100%)",
-                      filter: "contrast(1.05) brightness(0.95) saturate(0)",
-                    }}
                   >
                     Navegá por la avenida
                   </div>
                 </div>
 
-                {/* selector */}
-                <div className="flex flex-col items-center gap-0.5 basis-[45%] leading-[1.05]">
+                <div className="flex flex-col items-center gap-1.5 basis-[45%] leading-[1.1]">
 
                   {activeIndex > 0 && (
                     <button onClick={goUp} className="active:scale-95 transition" style={{ padding: 2 }}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="18 15 12 9 6 15" />
                       </svg>
                     </button>
                   )}
 
-                  <div className="text-white/60 text-[10px] truncate max-w-[90px] text-center">
+                  <div className="text-white/60 text-[12px] truncate max-w-[110px] text-center">
                     {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
                   </div>
 
                   <motion.div
                     key={node.key}
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="text-white font-bold text-[13px] truncate max-w-[100px]"
+                    className="text-white font-bold text-[15px] truncate max-w-[120px]"
                     style={{ fontFamily: "Times New Roman" }}
                   >
                     {node.name}
                   </motion.div>
 
-                  <div className="text-white/60 text-[10px] truncate max-w-[90px] text-center">
+                  <div className="text-white/60 text-[12px] truncate max-w-[110px] text-center">
                     {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
                   </div>
 
                   {activeIndex < nodes.length - 1 && (
                     <button onClick={goDown} className="active:scale-95 transition" style={{ padding: 2 }}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="6 9 12 15 18 9" />
                       </svg>
                     </button>
