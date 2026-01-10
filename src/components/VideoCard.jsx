@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Eye, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
+import { Eye, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Hand  } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 export default function VideoCard({
@@ -28,7 +28,7 @@ export default function VideoCard({
   const [constraints, setConstraints] = useState({ left: 0, right: 0 });
 
   useEffect(() => {
-    const t = setTimeout(() => setShowHint(false), 2400);
+    const t = setTimeout(() => setShowHint(false), 8000);
     return () => clearTimeout(t);
   }, []);
 
@@ -99,21 +99,23 @@ export default function VideoCard({
       />
 
       <AnimatePresence>
-        {showHint && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="
-              absolute bottom-5 left-1/2 -translate-x-1/2 z-30
-              px-5 py-2 rounded-full bg-black/60 backdrop-blur-md
-              text-[10px] md:text-xs uppercase tracking-wider
-            "
-          >
-            Deslizá para mirar
-          </motion.div>
-        )}
-      </AnimatePresence>
+  {showHint && (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      className="absolute bottom-5 left-1/1 -translate-x-1/2 z-30 
+                 px-5 py-2 rounded-full bg-black/60 backdrop-blur-md 
+                 text-[13px] md:text-xs uppercase tracking-wider 
+                 flex items-center gap-2.5"
+    >
+      <Hand size={50} className="text-white" /> {/* o Hand / Move */}
+      Deslizá para ver alrededor
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
 
       {/* LEFT */}
       {canGoLeft && (
@@ -175,7 +177,7 @@ export default function VideoCard({
           "
         >
           <ChevronUp size={24} />
-          <span className="text-[9px] md:text-xs tracking-widest mt-1">
+          <span className="text-[8px] md:text-xs tracking-widest mt-1">
             AVANZAR
           </span>
         </motion.button>
