@@ -158,40 +158,54 @@ export default function App() {
               </motion.div>
 
               {/* == MOBILE CARTEL + SELECTOR == */}
-              <div className="block md:hidden mt-1 flex flex-row gap-3 w-full px-2 font-serif">
-
-                <div className="flex flex-col justify-center basis-[55%] text-left">
+              <div
+                className="
+                  block md:hidden
+                  mt-4
+                  flex flex-row
+                  gap-4
+                  w-full
+                  px-3
+                  font-serif
+                "
+                style={{ paddingBottom: "12px" }}
+              >
+                <div className="flex flex-col justify-center basis-[50%] text-left">
                   <div
                     className="
-                      px-4 py-2
-                      mb-1
+                      px-5 py-3
+                      mb-2
                       rounded-md
                       uppercase
-                      text-[12px]
+                      text-[14px]
                       tracking-wide
                       text-white
-                      border border-white/60
+                      border border-white/70
                       bg-black/75
                       shadow-[0_2px_1px_rgba(0,0,0,0.35)]
                       backdrop-blur-[1px]
                       text-center
                     "
+                    style={{
+                      letterSpacing: "0.06em",
+                      fontWeight: 600,
+                    }}
                   >
                     Navegá por la avenida
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-1.5 basis-[45%] leading-[1.1]">
+                <div className="flex flex-col items-center gap-2.5 basis-[50%] leading-[1.1]">
 
                   {activeIndex > 0 && (
-                    <button onClick={goUp} className="active:scale-95 transition" style={{ padding: 2 }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <button onClick={goUp} className="active:scale-95 transition">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="18 15 12 9 6 15" />
                       </svg>
                     </button>
                   )}
 
-                  <div className="text-white/60 text-[12px] truncate max-w-[110px] text-center">
+                  <div className="text-white/70 text-[13px] truncate max-w-[150px] text-center">
                     {activeIndex > 0 ? nodes[activeIndex - 1].name : "\u00A0"}
                   </div>
 
@@ -200,19 +214,19 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="text-white font-bold text-[15px] truncate max-w-[120px]"
+                    className="text-white font-bold text-[18px] truncate max-w-[160px]"
                     style={{ fontFamily: "Times New Roman" }}
                   >
                     {node.name}
                   </motion.div>
 
-                  <div className="text-white/60 text-[12px] truncate max-w-[110px] text-center">
+                  <div className="text-white/70 text-[13px] truncate max-w-[150px] text-center">
                     {activeIndex < nodes.length - 1 ? nodes[activeIndex + 1].name : "\u00A0"}
                   </div>
 
                   {activeIndex < nodes.length - 1 && (
-                    <button onClick={goDown} className="active:scale-95 transition" style={{ padding: 2 }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <button onClick={goDown} className="active:scale-95 transition">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <polyline points="6 9 12 15 18 9" />
                       </svg>
                     </button>
